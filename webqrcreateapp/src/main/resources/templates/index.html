@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- HTML5文書の宣言 -->
+<!-- ドキュメント言語は日本語、Thymeleaf名前空間宣言 -->
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- 文字コードをUTF-8に指定 -->
+  <meta charset="UTF-8" />
+
+  <!-- レスポンシブ対応のためのビューポート設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ブラウザタブのタイトル -->
+  <title>QRコード作成アプリ</title>
+
+  <!-- ページ全体のスタイル定義 -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      /* 背景にグラデーションを設定 */
+      color: #fff; /* 文字色は白 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 縦に中央寄せ */
+      align-items: center; /* 横に中央寄せ */
+      height: 100vh; /* ビューポートの高さに合わせる */
+      margin: 0; /* 余計な余白を除去 */
+    }
+
+    h1 {
+      margin-bottom: 1rem; /* 下に余白 */
+      font-weight: 700; /* 太字 */
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* 文字に影を付ける */
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.15);
+      /* 半透明白背景でフォームを目立たせる */
+      padding: 2rem 2.5rem; /* 内側に余白を大きめに */
+      border-radius: 12px; /* 角を丸く */
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      /* 影を付けて浮き上がらせる */
+      backdrop-filter: blur(8px);
+      /* 背景をぼかす効果 */
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      /* 薄い境界線 */
+      width: 320px; /* フォーム幅固定 */
+    }
+
+    label {
+      font-size: 1.1rem; /* ラベル文字サイズ */
+      display: block; /* ブロック要素化して改行 */
+      margin-bottom: 0.5rem; /* 入力欄までの余白 */
+      letter-spacing: 0.03em; /* 文字間調整 */
+    }
+
+    input[type="text"] {
+      width: 100%;
+      /* 横幅いっぱいに広げる */
+      padding: 0.6rem 0.8rem; /* 入力欄の内側余白 */
+      border-radius: 8px; /* 角を丸く */
+      border: none; /* 境界線なし */
+      font-size: 1rem; /* 文字サイズ */
+      margin-bottom: 1.2rem; /* 下にスペース */
+      outline: none; /* フォーカス時のアウトライン削除 */
+      transition: box-shadow 0.3s ease;
+      /* フォーカス時の影切り替えを滑らかに */
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0 0 8px 2px #a18cd1;
+      /* フォーカス時の紫色の光の影 */
+      background: #fff;
+      color: #333; /* 黒に近い文字色 */
+    }
+
+    button {
+      width: 100%; /* 横幅いっぱい */
+      padding: 0.7rem 0; /* ボタンの上下余白 */
+      border-radius: 8px; /* 丸角 */
+      border: none; /* 境界線無し */
+      background: #6c63ff; /* ボタンの背景色 */
+      color: white; /* 文字色 */
+      font-size: 1.1rem; /* フォントサイズ */
+      font-weight: bold; /* 太字 */
+      cursor: pointer; /* ホバー時にポインター */
+      transition: background 0.3s ease;
+      /* 背景色変化を滑らかに */
+    }
+
+    button:hover {
+      background: #574bcf;
+      /* ホバー時の暗い紫に */
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      /* 上余白 */
+      font-size: 0.9rem;
+      opacity: 0.7;
+      /* 文字薄め */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ページタイトル -->
+  <h1>QRコード作成アプリ</h1>
+
+  <!-- フォーム送信先をSpringコントローラのパスに設定 -->
+  <!-- 新しいタブで開く設定 -->
+  <form th:action="@{/showQRCode}" method="get" target="_blank">
+    <!-- 入力欄ラベル -->
+    <label for="url">URLを入力してください</label>
+
+    <!-- URL入力欄。placeholderに例と必須指定 -->
+    <input type="text" id="url" name="url" placeholder="https://example.com?param=value" required />
+
+    <!-- 送信ボタン -->
+    <button type="submit">QRコードを生成</button>
+  </form>
+
+  <!-- フッター説明 -->
+  <div class="footer">サンプルアプリ</div>
+</body>
+
+</html>

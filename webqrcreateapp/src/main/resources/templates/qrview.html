@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>QRコード表示</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+    h1 {
+      font-weight: 700;
+      color: #4b4276;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .qr-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(75, 66, 118, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(75, 66, 118, 0.4);
+      transition: transform 0.3s ease;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+    .caption {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #666;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <h1>QRコード画像</h1>
+  <div class="qr-container">
+    <img th:src="@{${qrImagePath}}" alt="QRコード" />
+    <div class="caption">スマホで読み取ってください</div>
+  </div>
+</body>
+</html>
